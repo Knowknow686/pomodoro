@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Title bar -->
+  <div id="title-bar">
+    <span class="title-text">Pomodoro</span>
+    <div class="title-actions">
+      <button id="btn-minimize" title="Minimize">&#x2014;</button>
+      <button id="btn-close" title="Close">&times;</button>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="app">
+    <!-- Circular timer -->
+    <div class="ring-container">
+      <svg viewBox="0 0 200 200" class="ring-svg">
+        <circle cx="100" cy="100" r="90"
+          fill="none" stroke="var(--ring-bg)" stroke-width="8" />
+        <circle id="progress-ring" cx="100" cy="100" r="90"
+          fill="none" stroke="var(--color-work)" stroke-width="8"
+          stroke-linecap="round"
+          stroke-dasharray="565.487" stroke-dashoffset="0"
+          transform="rotate(-90 100 100)" />
+      </svg>
+      <div class="ring-center">
+        <div class="time" id="time">25:00</div>
+        <div class="mode-name" id="mode-name">Work</div>
+      </div>
+    </div>
+
+    <!-- Mode buttons -->
+    <div class="mode-buttons">
+      <button class="mode-btn active" data-mode="work">Work</button>
+      <button class="mode-btn" data-mode="short_break">Short Break</button>
+      <button class="mode-btn" data-mode="long_break">Long Break</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="ctrl-btn start" id="btn-start">Start</button>
+      <button class="ctrl-btn pause" id="btn-pause" disabled>Pause</button>
+      <button class="ctrl-btn reset" id="btn-reset">Reset</button>
+    </div>
+
+    <!-- Session counter -->
+    <div class="sessions" id="sessions">Completed: 0 sessions</div>
+
+    <!-- Settings -->
+    <div class="settings">
+      <div class="setting-row">
+        <label>Work <span class="unit">(min)</span></label>
+        <input type="number" id="work-min" min="1" max="120" value="25">
+      </div>
+      <div class="setting-row">
+        <label>Short Break <span class="unit">(min)</span></label>
+        <input type="number" id="short-min" min="1" max="120" value="5">
+      </div>
+      <div class="setting-row">
+        <label>Long Break <span class="unit">(min)</span></label>
+        <input type="number" id="long-min" min="1" max="120" value="15">
+      </div>
+      <button class="apply-btn" id="btn-apply">Apply</button>
+    </div>
+
+    <!-- Always on top -->
+    <label class="ontop-toggle">
+      <input type="checkbox" id="ontop-check">
+      <span>Always on top</span>
+    </label>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
