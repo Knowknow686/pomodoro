@@ -1,9 +1,9 @@
 const { app, BrowserWindow, ipcMain, Notification } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 
-const USER_DATA = path.join(app.getPath("home"), ".pomodoro-electron");
-app.setPath("userData", USER_DATA);
+const USER_DATA = path.join(os.homedir(), ".pomodoro-electron");
 const CONFIG_PATH = path.join(USER_DATA, "config.json");
 
 let mainWindow;
@@ -17,6 +17,7 @@ function loadConfig() {
 }
 
 function saveConfig(data) {
+  fs.mkdirSync(USER_DATA, { recursive: true });
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(data, null, 2), "utf-8");
 }
 
